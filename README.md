@@ -4,8 +4,17 @@ Run Azure Function locally:
 
 ```shell
 ./gradlew jar --info
-./graldew azureFunctionsRun
+./gradlew azureFunctionsRun
 ```
+
+## Prerequisites
+
+To develop functions using Kotlin, you must have the following installed:
+
+- [Java Developer Kit](https://docs.microsoft.com/en-us/azure/developer/java/fundamentals/java-jdk-long-term-support), version 8
+- [Optional] [Azure CLI](https://docs.microsoft.com/en-us/cli/azure) (needed to deploy)
+- [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2) version 2.6.666 or above
+- [Gradle](https://gradle.org/), version 4.10 and above
 
 ## Tests
 
