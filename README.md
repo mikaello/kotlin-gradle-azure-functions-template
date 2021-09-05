@@ -65,3 +65,11 @@ Edit `workers.config.json`:
 ```
 
 Restart IntelliJ and try again.
+
+## Related
+
+See also:
+
+* Documentation for the Gradle plugin used in this project: [com.microsoft.azure.azurefunctions](https://github.com/microsoft/azure-gradle-plugins/wiki/Azure-Functions-Gradle-Plugin)
+* [Azure-Samples/azure-functions-samples-java](https://github.com/Azure-Samples/azure-functions-samples-java) (azure functions + java + gradle)
+* [Starter doc](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-maven-kotlin-intellij) for creating azure functions + kotlin + maven
