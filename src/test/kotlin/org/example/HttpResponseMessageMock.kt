@@ -32,7 +32,7 @@ class HttpResponseMessageMock(private val httpStatus: HttpStatusType, private va
     class HttpResponseMessageBuilderMock : HttpResponseMessage.Builder {
         private var body: Any? = null
         private var httpStatusCode: Int = 0
-        private val headers: MutableMap<String, String>? = null
+        private val headers: MutableMap<String, String> = mutableMapOf()
         private var httpStatus: HttpStatusType? = null
 
         fun status(status: HttpStatus): HttpResponseMessage.Builder {
@@ -48,7 +48,7 @@ class HttpResponseMessageMock(private val httpStatus: HttpStatusType, private va
         }
 
         override fun header(key: String, value: String): HttpResponseMessage.Builder {
-            this.headers!![key] = value
+            this.headers[key] = value
             return this
         }
 
