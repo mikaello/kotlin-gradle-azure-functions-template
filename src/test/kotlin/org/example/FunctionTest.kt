@@ -40,7 +40,7 @@ class FunctionTest {
         val ret = Function().run(req, context)
 
         // Verify
-        assertEquals(ret.status, HttpStatus.OK)
+        assertEquals(HttpStatus.OK, ret.status)
     }
 
     /**
