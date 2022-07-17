@@ -15,6 +15,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    testLogging.showStandardStreams = (System.getenv('SHOW_STANDARD_STREAMS') != null)
 }
 
 sourceCompatibility = '1.8'
