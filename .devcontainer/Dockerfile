@@ -17,6 +17,10 @@ ARG USER_GID=$USER_UID
 
 ### END CHANGES
 
+# Install completions where zsh can find them
+RUN mkdir -p /etc/bash_completion.d \
+  && curl -sSf https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o /etc/bash_completion.d/git-completion.bash
+
 
 RUN apt-get update && apt-get -y install tree vim exa fd-find silversearcher-ag
 
