@@ -18,7 +18,7 @@ ARG USER_GID=$USER_UID
 ### END CHANGES
 
 
-RUN apt-get update && apt-get -y vim tree install exa fd-find silversearcher-ag
+RUN apt-get update && apt-get -y tree vim install exa fd-find silversearcher-ag
 
 # renovate: datasource=github-releases depName=pinterest/ktlint
 ENV KTLINT_VERSION=0.46.0

@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build devcontainer
-        run: docker build -t just-for-testing .devcontainer/Dockerfile
+        run: docker build -t just-for-testing .devcontainer
