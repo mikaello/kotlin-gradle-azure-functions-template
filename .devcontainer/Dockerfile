@@ -28,7 +28,7 @@ RUN curl -sSfLO https://github.com/pinterest/ktlint/releases/download/${KTLINT_V
 
 # renovate: datasource=github-releases depName=JetBrains/kotlin
 ENV KOTLIN_VERSION=v1.7.10
-RUN curl -sSfLo kotlinc.zip https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
+RUN curl -sSfLo kotlinc.zip https://github.com/JetBrains/kotlin/releases/download/${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION:1}.zip \
  && unzip kotlinc.zip -d /opt/ \
  && rm kotlinc.zip
 # Added kotlinc to PATH in devcontainer.json (remoteEnv)
