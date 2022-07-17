@@ -21,7 +21,7 @@ ARG USER_GID=$USER_UID
 RUN apt-get update && apt-get -y install tree vim exa fd-find silversearcher-ag
 
 # renovate: datasource=github-releases depName=pinterest/ktlint
-ENV KTLINT_VERSION=0.46.0
+ENV KTLINT_VERSION=0.46.1
 RUN curl -sSfLO https://github.com/pinterest/ktlint/releases/download/${KTLINT_VERSION}/ktlint \
   && chmod a+x ktlint \
   && mv ktlint /usr/local/bin
