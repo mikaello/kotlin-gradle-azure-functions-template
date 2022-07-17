@@ -10,7 +10,7 @@ version '1.0-SNAPSHOT'
 dependencies {
     implementation 'com.microsoft.azure.functions:azure-functions-java-library:1.4.2'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
-    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.mockito:mockito-core:4.6.1'
 }
 
 test {
