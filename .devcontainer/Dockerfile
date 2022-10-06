@@ -22,7 +22,7 @@ RUN mkdir -p /etc/bash_completion.d \
   && curl -sSf https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o /etc/bash_completion.d/git-completion.bash
 
 
-RUN apt-get update && apt-get -y install tree vim exa fd-find silversearcher-ag
+RUN apt-get update && apt-get -y install tree vim exa fd-find silversearcher-ag bat
 
 # renovate: datasource=github-releases depName=pinterest/ktlint
 ENV KTLINT_VERSION=0.47.1

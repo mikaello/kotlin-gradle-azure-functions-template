@@ -12,6 +12,8 @@
       "extensions": [
         "ms-azuretools.vscode-docker",
         "ms-azuretools.vscode-azurefunctions",
+				"ms-azuretools.vscode-azureresourcegroups",
+				"ms-vscode.azure-account",
         "vscjava.vscode-java-pack",
         "mathiasfrohlich.Kotlin",
         "esbenp.prettier-vscode"
@@ -21,7 +23,6 @@
   "remoteEnv": { "PATH": "${containerEnv:PATH}:/opt/kotlinc/bin" },
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "java -version",
-  "postCreateCommand": "source /etc/bash_completion.d/*",
   // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "vscode"
 }
