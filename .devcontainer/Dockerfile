@@ -31,7 +31,7 @@ RUN curl -sSfLO https://github.com/pinterest/ktlint/releases/download/${KTLINT_V
   && mv ktlint /usr/local/bin
 
 # renovate: datasource=github-releases depName=JetBrains/kotlin
-ENV KOTLIN_VERSION=v1.8.0
+ENV KOTLIN_VERSION=v1.8.10
 RUN export KT_VERSION=$(echo $KOTLIN_VERSION | cut -c2-) \
  && curl -sSfLo kotlinc.zip https://github.com/JetBrains/kotlin/releases/download/${KOTLIN_VERSION}/kotlin-compiler-${KT_VERSION}.zip \
  && unzip kotlinc.zip -d /opt/ \
