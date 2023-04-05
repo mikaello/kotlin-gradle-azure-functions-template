@@ -18,8 +18,8 @@ test {
     testLogging.showStandardStreams = (System.getenv('SHOW_STANDARD_STREAMS') != null)
 }
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 compileJava.options.encoding = 'UTF-8'
 
@@ -34,7 +34,7 @@ azurefunctions {
     region = 'westus'
     runtime {
         os = 'windows'
-        javaVersion = '8'
+        javaVersion = '11'
     }
     localDebug = "transport=dt_socket,server=y,suspend=n,address=5005"
 }
