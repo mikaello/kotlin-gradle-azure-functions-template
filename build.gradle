@@ -1,5 +1,5 @@
 plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.9.24"
+    id "org.jetbrains.kotlin.jvm" version "2.0.0"
     id "com.microsoft.azure.azurefunctions" version "1.15.0"
 }
 apply plugin: "com.microsoft.azure.azurefunctions"
