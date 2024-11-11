@@ -25,7 +25,7 @@ RUN mkdir -p /etc/bash_completion.d \
 RUN apt-get update && apt-get -y install tree vim exa fd-find silversearcher-ag bat
 
 # renovate: datasource=github-releases depName=pinterest/ktlint
-ENV KTLINT_VERSION=1.4.0
+ENV KTLINT_VERSION=1.4.1
 RUN curl -sSfLO https://github.com/pinterest/ktlint/releases/download/${KTLINT_VERSION}/ktlint \
   && chmod a+x ktlint \
   && mv ktlint /usr/local/bin
