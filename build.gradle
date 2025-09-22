@@ -18,6 +18,14 @@ test {
     testLogging.showStandardStreams = (System.getenv('SHOW_STANDARD_STREAMS') != null)
 }
 
+testing {
+    suites {
+        test {
+            useJUnitJupiter()
+        }
+    }
+}
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
