@@ -20,7 +20,7 @@ test {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
@@ -37,7 +37,7 @@ azurefunctions {
     region = 'westus'
     runtime {
         os = 'windows'
-        javaVersion = '21'
+        javaVersion = '17'
     }
     localDebug = "transport=dt_socket,server=y,suspend=n,address=5005"
 }
