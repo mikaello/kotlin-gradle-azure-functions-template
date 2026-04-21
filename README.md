@@ -11,10 +11,11 @@ Run Azure Function locally:
 
 To develop functions using Kotlin, you must have the following installed:
 
-- [Java Developer Kit](https://docs.microsoft.com/en-us/azure/developer/java/fundamentals/java-jdk-long-term-support), version 8
+- [Java Developer Kit](https://learn.microsoft.com/en-us/java/openjdk/download), version 21
 - [Optional] [Azure CLI](https://docs.microsoft.com/en-us/cli/azure) (needed to deploy)
-- [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2) version 2.6.666 or above
-- [Gradle](https://gradle.org/), version 4.10 and above
+- [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local) version 4.x or above
+
+A [Dev Container](.devcontainer/devcontainer.json) is provided with all required tools pre-installed.
 
 ## Tests
 
@@ -32,13 +33,13 @@ You may need to change the Java path when running on WSL, find the Java Worker c
 
 ```shell
 readlink -f $(which func)
-# E.g. /usr/lib/azure-functions-core-tools-3/func
+# E.g. /usr/lib/azure-functions-core-tools-4/func
 ```
 
 Go into the directory of the Java Worker:
 
 ```shell
-cd /usr/lib/azure-functions-core-tools-3/workers/java
+cd /usr/lib/azure-functions-core-tools-4/workers/java
 ```
 
 Edit the worker config and specify the correct Java executable:

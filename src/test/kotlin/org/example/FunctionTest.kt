@@ -1,13 +1,12 @@
 package org.example
 
 import com.microsoft.azure.functions.*
-import org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.*
 import java.util.Optional
 import java.util.logging.Logger
-import kotlin.collections.HashMap
 
 /**
  * Unit test for Function class.
@@ -16,16 +15,17 @@ class FunctionTest {
 
     private inline fun <reified T : Any> mock(): T = mock(T::class.java)
 
-    private fun testHttpTrigger(httpMethod: HttpMethod) {
-        // Setup
+    private fun buildRequest(
+        httpMethod: HttpMethod,
+        queryName: String? = null,
+        bodyName: String? = null,
+    ): HttpRequestMessage<Optional<String>> {
         val req = mock<HttpRequestMessage<Optional<String>>>()
 
-        val queryParams = HashMap<String, String>()
-        queryParams["name"] = "Azure"
-        doReturn(queryParams).`when`<HttpRequestMessage<Optional<String>>>(req).queryParameters
+        doReturn(if (queryName != null) mapOf("name" to queryName) else emptyMap<String, String>())
+            .`when`<HttpRequestMessage<Optional<String>>>(req).queryParameters
 
-        val queryBody = Optional.empty<String>()
-        doReturn(queryBody).`when`<HttpRequestMessage<*>>(req).body
+        doReturn(Optional.ofNullable(bodyName)).`when`<HttpRequestMessage<*>>(req).body
         doReturn(httpMethod).`when`<HttpRequestMessage<*>>(req).httpMethod
 
         doAnswer { invocation ->
@@ -33,32 +33,44 @@ class FunctionTest {
             HttpResponseMessageMock.HttpResponseMessageBuilderMock().status(status)
         }.`when`<HttpRequestMessage<*>>(req).createResponseBuilder(any(HttpStatus::class.java))
 
+        return req
+    }
+
+    private fun buildContext(): ExecutionContext {
         val context = mock(ExecutionContext::class.java)
         doReturn(Logger.getGlobal()).`when`(context).logger
+        return context
+    }
 
-        // Invoke
-        val ret = Function().run(req, context)
-
-        // Verify
+    @Test
+    fun testHttpTriggerGetWithQueryParam() {
+        val req = buildRequest(HttpMethod.GET, queryName = "Azure")
+        val ret = Function().run(req, buildContext())
         assertEquals(HttpStatus.OK, ret.status)
+        assertEquals("Hello, Azure!", ret.body)
     }
 
-    /**
-     * Unit test for HttpTrigger GET method.
-     */
     @Test
-    @Throws(Exception::class)
-    fun testHttpTriggerGET() {
-        testHttpTrigger(HttpMethod.GET)
+    fun testHttpTriggerPostWithBody() {
+        val req = buildRequest(HttpMethod.POST, bodyName = "Azure")
+        val ret = Function().run(req, buildContext())
+        assertEquals(HttpStatus.OK, ret.status)
+        assertEquals("Hello, Azure!", ret.body)
     }
 
-    /**
-     * Unit test for HttpTrigger POST method.
-     */
     @Test
-    @Throws(Exception::class)
-    fun testHttpTriggerPOST() {
-        testHttpTrigger(HttpMethod.POST)
+    fun testHttpTriggerBodyTakesPrecedenceOverQuery() {
+        val req = buildRequest(HttpMethod.POST, queryName = "Query", bodyName = "Body")
+        val ret = Function().run(req, buildContext())
+        assertEquals(HttpStatus.OK, ret.status)
+        assertEquals("Hello, Body!", ret.body)
+    }
+
+    @Test
+    fun testHttpTriggerMissingNameReturnsBadRequest() {
+        val req = buildRequest(HttpMethod.GET)
+        val ret = Function().run(req, buildContext())
+        assertEquals(HttpStatus.BAD_REQUEST, ret.status)
     }
 
 }
