@@ -1,6 +1,6 @@
 package org.example
 
-import java.util.*
+import java.util.Optional
 import com.microsoft.azure.functions.*
 import com.microsoft.azure.functions.annotation.*
 
