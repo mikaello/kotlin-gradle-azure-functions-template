@@ -29,17 +29,17 @@ class Function {
         val query = request.queryParameters["name"]
         val name = request.body.orElse(query)
 
-        name?.let {
-            return request
+        return if (name.isNullOrBlank()) {
+            request
+                    .createResponseBuilder(HttpStatus.BAD_REQUEST)
+                    .body("Please pass a name on the query string or in the request body")
+                    .build()
+        } else {
+            request
                     .createResponseBuilder(HttpStatus.OK)
                     .body("Hello, $name!")
                     .build()
         }
-
-        return request
-                .createResponseBuilder(HttpStatus.BAD_REQUEST)
-                .body("Please pass a name on the query string or in the request body")
-                .build()
     }
 
 }
