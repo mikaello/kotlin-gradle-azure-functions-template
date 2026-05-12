@@ -73,4 +73,26 @@ class FunctionTest {
         assertEquals(HttpStatus.BAD_REQUEST, ret.status)
     }
 
+    @Test
+    fun testHttpTriggerBlankQueryReturnsBadRequest() {
+        val req = buildRequest(HttpMethod.GET, queryName = "   ")
+        val ret = Function().run(req, buildContext())
+        assertEquals(HttpStatus.BAD_REQUEST, ret.status)
+    }
+
+    @Test
+    fun testHttpTriggerEmptyBodyFallsBackToQuery() {
+        val req = buildRequest(HttpMethod.POST, queryName = "Azure", bodyName = null)
+        val ret = Function().run(req, buildContext())
+        assertEquals(HttpStatus.OK, ret.status)
+        assertEquals("Hello, Azure!", ret.body)
+    }
+
+    @Test
+    fun testHttpTriggerPostNoBodyOrQueryReturnsBadRequest() {
+        val req = buildRequest(HttpMethod.POST)
+        val ret = Function().run(req, buildContext())
+        assertEquals(HttpStatus.BAD_REQUEST, ret.status)
+    }
+
 }

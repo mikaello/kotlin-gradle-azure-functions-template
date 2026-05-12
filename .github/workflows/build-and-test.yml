@@ -1,6 +1,13 @@
 name: Kotlin / Gradle CI
 
-on: [push]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -15,5 +22,7 @@ jobs:
           distribution: temurin
       - name: Validate Gradle wrapper
         uses: gradle/actions/wrapper-validation@v6
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
       - name: Build with Gradle
         run: SHOW_STANDARD_STREAMS=1 ./gradlew build --warning-mode all

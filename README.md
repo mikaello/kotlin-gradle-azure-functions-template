@@ -1,10 +1,19 @@
 # Kotlin and Gradle template for Azure functions
 
-Run Azure Function locally:
+[![Kotlin / Gradle CI](https://github.com/mikaello/kotlin-gradle-azure-functions-template/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/mikaello/kotlin-gradle-azure-functions-template/actions/workflows/build-and-test.yml)
+
+Run the Azure Function locally:
 
 ```shell
-./gradlew jar --info
 ./gradlew azureFunctionsRun
+```
+
+Then invoke it:
+
+```shell
+curl "http://localhost:7071/api/HttpTrigger-Java?name=World"
+# or
+curl -d "World" "http://localhost:7071/api/HttpTrigger-Java"
 ```
 
 ## Prerequisites
@@ -24,6 +33,28 @@ Run tests by:
 ```shell
 ./gradlew test
 ```
+
+The CI runs `./gradlew build` (which includes `test`) on every push and pull request — see [`.github/workflows/build-and-test.yml`](.github/workflows/build-and-test.yml).
+
+## Deploy
+
+Update the `azurefunctions { ... }` block in [`build.gradle`](build.gradle) (at minimum `resourceGroup`, `appName`, `region`) to match your Azure subscription, then:
+
+```shell
+az login
+./gradlew azureFunctionsDeploy
+```
+
+See the [plugin docs](https://github.com/microsoft/azure-gradle-plugins/wiki/Azure-Functions-Gradle-Plugin) for all available configuration options.
+
+## Customizing this template
+
+After cloning, you will typically want to:
+
+1. Rename the package `org.example` and the `group` in `build.gradle`.
+2. Rename `Function.kt` and the `@FunctionName(...)` value to something descriptive.
+3. Update `rootProject.name` in [`settings.gradle`](settings.gradle).
+4. Update the `azurefunctions { ... }` block as described above.
 
 ## Troubleshooting
 
