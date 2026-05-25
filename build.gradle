@@ -7,7 +7,7 @@ version = '1.0-SNAPSHOT'
 
 dependencies {
     implementation 'com.microsoft.azure.functions:azure-functions-java-library:3.3.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter:6.0.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter:6.1.0'
     testImplementation 'org.mockito:mockito-core:5.23.0'
 }
 
