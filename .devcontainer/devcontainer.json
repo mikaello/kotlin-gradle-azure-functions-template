@@ -9,7 +9,7 @@
             "version": "21"
         },
         "ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {},
-        "ghcr.io/mikaello/devcontainer-features/modern-shell-utils:2": {},
+        "ghcr.io/mikaello/devcontainer-features/modern-shell-utils:3": {},
         "ghcr.io/mikaello/devcontainer-features/kotlinc:1": {}
     },
     "customizations": {
